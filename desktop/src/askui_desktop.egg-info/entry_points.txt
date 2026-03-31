@@ -1,0 +1,2 @@
+[console_scripts]
+askui-desktop = askui_desktop.__main__:main

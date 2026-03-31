@@ -1,0 +1,16 @@
+pyproject.toml
+src/askui_desktop/__init__.py
+src/askui_desktop/__main__.py
+src/askui_desktop/config.py
+src/askui_desktop.egg-info/PKG-INFO
+src/askui_desktop.egg-info/SOURCES.txt
+src/askui_desktop.egg-info/dependency_links.txt
+src/askui_desktop.egg-info/entry_points.txt
+src/askui_desktop.egg-info/requires.txt
+src/askui_desktop.egg-info/top_level.txt
+src/askui_desktop/ui/__init__.py
+src/askui_desktop/ui/cancel_appointment_page.py
+src/askui_desktop/ui/create_appointment_page.py
+src/askui_desktop/ui/main_window.py
+src/askui_desktop/ui/reschedule_appointment_page.py
+src/askui_desktop/ui/websocket_manager.py

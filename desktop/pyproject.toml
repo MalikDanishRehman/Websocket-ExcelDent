@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "askui-desktop"
+version = "0.1.0"
+description = "AskUI desktop appointment client"
+requires-python = ">=3.10"
+dependencies = [
+    "PySide6>=6.5.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+askui-desktop = "askui_desktop.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
