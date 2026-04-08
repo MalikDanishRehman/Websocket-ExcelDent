@@ -18,8 +18,6 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from askui_desktop.time_slot import hhmm_plus_minutes
-
 if TYPE_CHECKING:
     from askui_desktop.ui.websocket_manager import WebSocketManager
 
@@ -39,14 +37,19 @@ class RescheduleAppointmentPage(QWidget):
         self._new_date = QDateEdit()
         self._new_date.setCalendarPopup(True)
         self._new_date.setDate(QDate.currentDate())
-        self._new_time = QTimeEdit()
-        self._new_time.setTime(QTime(10, 0))
+        self._new_start_time = QTimeEdit()
+        self._new_start_time.setDisplayFormat("HH:mm")
+        self._new_start_time.setTime(QTime(10, 0))
+        self._new_end_time = QTimeEdit()
+        self._new_end_time.setDisplayFormat("HH:mm")
+        self._new_end_time.setTime(QTime(10, 30))
         self._notes = QLineEdit()
 
         form = QFormLayout()
         form.addRow("Patient", self._patient)
         form.addRow("Date", self._new_date)
-        form.addRow("Time", self._new_time)
+        form.addRow("New Start Time", self._new_start_time)
+        form.addRow("New End Time", self._new_end_time)
         form.addRow("Notes", self._notes)
 
         box = QGroupBox("Reschedule appointment")
@@ -66,13 +69,14 @@ class RescheduleAppointmentPage(QWidget):
             QMessageBox.warning(self, "Reschedule appointment", "Workspace ID is required.")
             return
 
-        new_start = self._new_time.time().toString("HH:mm")
+        new_start = self._new_start_time.time().toString("HH:mm")
+        new_end = self._new_end_time.time().toString("HH:mm")
         data = {
             "patient_name": self._patient.text().strip(),
             "file_number": None,
             "new_date": self._new_date.date().toString("yyyy-MM-dd"),
             "new_start_time": new_start,
-            "new_end_time": hhmm_plus_minutes(new_start),
+            "new_end_time": new_end,
             "notes": self._notes.text().strip(),
         }
         payload = {
